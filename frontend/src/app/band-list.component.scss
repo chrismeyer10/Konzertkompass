@@ -28,4 +28,11 @@ li {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+  align-items: center;
+}
+
+li::before {
+  content: '♪';
+  margin-right: 0.5rem;
+  color: #ff4081;
 }

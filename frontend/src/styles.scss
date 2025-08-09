@@ -1,10 +1,37 @@
 /* Global styles for the Konzertkompass frontend */
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Music&display=swap');
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Noto Music', Arial, sans-serif;
   background: linear-gradient(135deg, #1e3c72, #2a5298);
   color: #fff;
+  background-size: 400% 400%;
+  animation: gradient-move 15s ease infinite;
+  overflow-x: hidden;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body::after {
+  content: '♪ ♫ ♬';
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
 }
 
 .navbar {
@@ -12,6 +39,12 @@ body {
   display: flex;
   gap: 1rem;
   padding: 1rem;
+}
+
+.navbar::before {
+  content: '♫';
+  align-self: center;
+  margin-right: 0.5rem;
 }
 
 .navbar a {
@@ -28,4 +61,10 @@ button {
   border: none;
   color: #fff;
   border-radius: 4px;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 64, 129, 0.6);
 }
