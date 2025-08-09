@@ -12,8 +12,8 @@ declare const google: any;
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements AfterViewInit {
-  constructor(private auth: AuthService, private router: Router) {}
+  export class LoginComponent implements AfterViewInit {
+    constructor(public auth: AuthService, private router: Router) {}
 
   ngAfterViewInit() {
     if (typeof google !== 'undefined') {
