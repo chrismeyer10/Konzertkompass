@@ -1,0 +1,13 @@
+<div class="band-list">
+  <h2>Your Bands</h2>
+  <form (ngSubmit)="addBand()">
+    <input name="band" [(ngModel)]="newBand" placeholder="Add band" required />
+    <button type="submit">Add</button>
+  </form>
+  <ul>
+    <li *ngFor="let band of bands">
+      {{ band }}
+      <button (click)="removeBand(band)">Remove</button>
+    </li>
+  </ul>
+</div>
