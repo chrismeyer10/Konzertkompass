@@ -1,10 +1,23 @@
 <div class="login-container">
   <div *ngIf="!auth.user()">
+    <div class="local-login">
+      <input type="text" [(ngModel)]="username" placeholder="Username" />
+      <input
+        type="password"
+        [(ngModel)]="password"
+        placeholder="Password"
+      />
+      <div class="buttons">
+        <button (click)="loginUser()">Login</button>
+        <button (click)="registerUser()">Register</button>
+      </div>
+      <p class="message" *ngIf="message">{{ message }}</p>
+    </div>
+    <div class="divider">or</div>
     <div id="googleBtn"></div>
   </div>
   <div *ngIf="auth.user()" class="profile">
-    <p>Token:</p>
-    <code>{{ auth.user().credential }}</code>
+    <p>Welcome {{ auth.user().username || 'friend' }}</p>
     <button (click)="signOut()">Sign out</button>
   </div>
 </div>
