@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from './auth.service';
+import { BackgroundService } from './background.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,13 @@ import { AuthService } from './auth.service';
 export class App {
   protected readonly title = signal('Konzertkompass');
 
-  constructor(public auth: AuthService, private router: Router) {}
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private bg: BackgroundService
+  ) {
+    this.bg.loadSavedBackground();
+  }
 
   logout() {
     this.auth.clearUser();

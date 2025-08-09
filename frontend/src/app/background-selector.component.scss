@@ -1,0 +1,19 @@
+.background-selector {
+  text-align: center;
+  .images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    img {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    img:hover {
+      border-color: #666;
+    }
+  }
+}
