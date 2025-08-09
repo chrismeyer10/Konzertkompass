@@ -1,4 +1,5 @@
 <div class="login-container">
+  <app-background-selector></app-background-selector>
   <div *ngIf="!auth.user()">
     <div class="local-login">
       <input type="text" [(ngModel)]="username" placeholder="Username" />
