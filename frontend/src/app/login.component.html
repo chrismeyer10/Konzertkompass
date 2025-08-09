@@ -1,10 +1,10 @@
 <div class="login-container">
-  <div *ngIf="!user()">
+  <div *ngIf="!auth.user()">
     <div id="googleBtn"></div>
   </div>
-  <div *ngIf="user()" class="profile">
+  <div *ngIf="auth.user()" class="profile">
     <p>Token:</p>
-    <code>{{ user().credential }}</code>
+    <code>{{ auth.user().credential }}</code>
     <button (click)="signOut()">Sign out</button>
   </div>
 </div>
