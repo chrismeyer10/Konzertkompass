@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, signal } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 declare const google: any;
 
@@ -11,13 +13,16 @@ declare const google: any;
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements AfterViewInit {
-  user = signal<any | null>(null);
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngAfterViewInit() {
     if (typeof google !== 'undefined') {
       google.accounts.id.initialize({
-        client_id: 'GOOGLE_CLIENT_ID',
-        callback: (resp: any) => this.user.set(resp),
+        client_id: (import.meta as any).env['NG_APP_GOOGLE_CLIENT_ID'] || 'GOOGLE_CLIENT_ID',
+        callback: (resp: any) => {
+          this.auth.setUser(resp);
+          this.router.navigate(['/bands']);
+        },
       });
       google.accounts.id.renderButton(
         document.getElementById('googleBtn'),
@@ -27,6 +32,6 @@ export class LoginComponent implements AfterViewInit {
   }
 
   signOut() {
-    this.user.set(null);
+    this.auth.clearUser();
   }
 }

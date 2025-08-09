@@ -1,6 +1,7 @@
 <nav class="navbar">
-  <a routerLink="/login" routerLinkActive="active">Login</a>
-  <a routerLink="/bands" routerLinkActive="active">Bands</a>
+  <a routerLink="/login" routerLinkActive="active" *ngIf="!auth.user()">Login</a>
+  <a routerLink="/bands" routerLinkActive="active" *ngIf="auth.user()">Bands</a>
+  <button *ngIf="auth.user()" (click)="logout()">Logout</button>
 </nav>
 <main>
   <router-outlet></router-outlet>
