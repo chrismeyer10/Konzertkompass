@@ -1,12 +1,21 @@
 <div class="band-list">
-  <h2>Your Bands</h2>
-  <form (ngSubmit)="addBand()">
-    <input name="band" [(ngModel)]="newBand" placeholder="Add band" required />
-    <button type="submit">Add</button>
-  </form>
-  <ul>
+  <h2>Band Search</h2>
+  <input
+    name="band"
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="search($event)"
+    placeholder="Search bands"
+  />
+  <ul *ngIf="suggestions.length">
+    <li *ngFor="let band of suggestions" (click)="addBand(band)">
+      {{ band.name }}
+    </li>
+  </ul>
+
+  <h3>Your Bands</h3>
+  <ul class="your-bands">
     <li *ngFor="let band of bands">
-      {{ band }}
+      {{ band.name }}
       <button (click)="removeBand(band)">Remove</button>
     </li>
   </ul>
