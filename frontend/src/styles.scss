@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles for the Konzertkompass frontend */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+}
+
+.navbar {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar a.active {
+  text-decoration: underline;
+}
+
+button {
+  background-color: #ff4081;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+}
