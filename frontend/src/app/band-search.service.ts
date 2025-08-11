@@ -24,16 +24,17 @@ export class BandSearchService {
     )}&fmt=json&limit=10`;
     return this.http.get<any>(url).pipe(
       switchMap((resp) => {
-        const bands = (resp.artists || []).map(
-          (a: any) => ({ id: a.id, name: a.name } as Band)
-        );
+        const bands = (resp.artists || [])
+          .sort((a: any, b: any) => (b.score || 0) - (a.score || 0))
+          .map((a: any) => ({ id: a.id, name: a.name } as Band));
         if (!bands.length) {
           return of([]);
         }
         const requests = bands.map((band: Band) =>
-          this.getUpcomingEvents(band.id).pipe(
-            map((events) => ({ ...band, upcomingEvents: events }))
-          )
+          forkJoin({
+            upcomingEvents: this.getUpcomingEvents(band.id),
+            imageUrl: this.getImage(band.id),
+          }).pipe(map((res) => ({ ...band, ...res })))
         );
         return forkJoin(requests) as Observable<Band[]>;
       })
@@ -55,6 +56,22 @@ export class BandSearchService {
           });
       }),
       catchError(() => of([]))
+    );
+  }
+
+  private getImage(id: string): Observable<string> {
+    const url = `https://musicbrainz.org/ws/2/artist/${id}?inc=url-rels&fmt=json`;
+    return this.http.get<any>(url).pipe(
+      map((resp) => {
+        const rel = (resp.relations || []).find(
+          (r: any) => r.type === 'image' && r.url?.resource
+        );
+        return (
+          rel?.url?.resource ||
+          'https://via.placeholder.com/64?text=Band'
+        );
+      }),
+      catchError(() => of('https://via.placeholder.com/64?text=Band'))
     );
   }
 }
