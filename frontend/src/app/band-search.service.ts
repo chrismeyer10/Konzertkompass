@@ -34,7 +34,8 @@ export class BandSearchService {
         bands
           .filter((b) => b.name.toLowerCase().startsWith(lower))
           .slice(0, 10)
-      )
+      ),
+      catchError(() => of([]))
     );
   }
 }
