@@ -2,20 +2,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3rem;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.1);
+  margin-top: 10vh;
+  padding: 2rem 3rem;
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(6px);
   border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  text-align: center;
 }
 
 .login-container::before {
-  content: '★';
+  content: '\266B';
   display: block;
   font-size: 3rem;
-  margin-bottom: 1rem;
-  color: #00e5ff;
+  margin-bottom: 0.5rem;
+  color: #ff4081;
+}
+
+.title {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+.tagline {
+  margin: 0 0 2rem 0;
+  color: #ccc;
+}
+
+.auth-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .local-login {

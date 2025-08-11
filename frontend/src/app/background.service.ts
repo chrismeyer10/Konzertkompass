@@ -2,15 +2,18 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class BackgroundService {
-  getSuggestions(count = 5): string[] {
-    return Array.from({ length: count }, (_, i) =>
-      `https://source.unsplash.com/1600x900/?band&sig=${i}`
-    );
+  private images = ['images/bg1.svg', 'images/bg2.svg', 'images/bg3.svg'];
+
+  getSuggestions(): string[] {
+    return this.images;
   }
 
   setBackground(url: string) {
     if (typeof document !== 'undefined') {
-      document.body.style.backgroundImage = `url(${url})`;
+      document.body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${url})`;
+      document.body.style.backgroundSize = 'cover';
+      document.body.style.backgroundRepeat = 'no-repeat';
+      document.body.style.backgroundPosition = 'center';
     }
     if (typeof window !== 'undefined') {
       window.localStorage.setItem('background', url);
