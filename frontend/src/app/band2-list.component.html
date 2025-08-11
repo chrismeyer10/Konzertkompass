@@ -1,0 +1,11 @@
+<div class="band2-search">
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="search($event)"
+    placeholder="Suche Bands weltweit..."
+  />
+  <ul *ngIf="suggestions.length">
+    <li *ngFor="let band of suggestions">{{ band.name }}</li>
+  </ul>
+</div>
