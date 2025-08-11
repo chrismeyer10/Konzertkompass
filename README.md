@@ -19,3 +19,6 @@ npm start
 ```
 
 After logging in you can manage your band list.
+
+## License
+© 2024 Christian Meyer. All rights reserved.
