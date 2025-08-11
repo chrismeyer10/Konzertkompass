@@ -21,22 +21,24 @@ ul {
   padding: 0;
 }
 
-li {
+.band-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
   padding: 0.25rem 0;
   cursor: pointer;
 }
 
-.your-bands li {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  align-items: center;
+.band-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 0.5rem;
 }
 
-li::before {
-  content: '♪';
-  margin-right: 0.5rem;
-  color: #ff4081;
+.band-info {
+  flex: 1;
 }
 
 .events {

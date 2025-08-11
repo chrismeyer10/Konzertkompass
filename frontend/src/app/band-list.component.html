@@ -6,31 +6,49 @@
     (ngModelChange)="search($event)"
     placeholder="Search bands"
   />
-    <ul *ngIf="suggestions.length">
-      <li *ngFor="let band of suggestions" (click)="addBand(band)">
+  <ul *ngIf="suggestions.length">
+    <li
+      *ngFor="let band of suggestions"
+      (click)="addBand(band)"
+      class="band-item"
+    >
+      <img [src]="band.imageUrl" [alt]="band.name" />
+      <div class="band-info">
         <div class="band-name">{{ band.name }}</div>
         <ul class="events" *ngIf="band.upcomingEvents?.length">
           <li *ngFor="let event of band.upcomingEvents">{{ event }}</li>
         </ul>
-        <div class="events" *ngIf="band.upcomingEvents && !band.upcomingEvents.length">
+        <div
+          class="events"
+          *ngIf="band.upcomingEvents && !band.upcomingEvents.length"
+        >
           <em>Keine Auftritte in den nächsten 3 Wochen</em>
         </div>
-      </li>
-    </ul>
+      </div>
+    </li>
+  </ul>
 
-    <h3>Your Bands</h3>
-    <ul class="your-bands">
-      <li *ngFor="let band of bands">
+  <h3>Your Bands</h3>
+  <ul class="your-bands">
+    <li *ngFor="let band of bands" class="band-item">
+      <img [src]="band.imageUrl" [alt]="band.name" />
+      <div class="band-info">
         <div class="band-name">
           {{ band.name }}
-          <button (click)="removeBand(band); $event.stopPropagation()">Remove</button>
+          <button (click)="removeBand(band); $event.stopPropagation()">
+            Remove
+          </button>
         </div>
         <ul class="events" *ngIf="band.upcomingEvents?.length">
           <li *ngFor="let event of band.upcomingEvents">{{ event }}</li>
         </ul>
-        <div class="events" *ngIf="band.upcomingEvents && !band.upcomingEvents.length">
+        <div
+          class="events"
+          *ngIf="band.upcomingEvents && !band.upcomingEvents.length"
+        >
           <em>Keine Auftritte in den nächsten 3 Wochen</em>
         </div>
-      </li>
-    </ul>
+      </div>
+    </li>
+  </ul>
 </div>

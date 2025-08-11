@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BandSearchService } from './band-search.service';
 import { Band } from './models/band';
+import { Subject, Subscription, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-band-list',
@@ -11,15 +12,32 @@ import { Band } from './models/band';
   templateUrl: './band-list.component.html',
   styleUrl: './band-list.component.scss'
 })
-export class BandListComponent {
+export class BandListComponent implements OnInit, OnDestroy {
   searchTerm = '';
   suggestions: Band[] = [];
   bands: Band[] = [];
 
+  private searchTerms = new Subject<string>();
+  private searchSub?: Subscription;
+
   constructor(private bandSearch: BandSearchService) {}
 
+  ngOnInit() {
+    this.searchSub = this.searchTerms
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((term: string) => this.bandSearch.search(term))
+      )
+      .subscribe((bands) => (this.suggestions = bands));
+  }
+
+  ngOnDestroy() {
+    this.searchSub?.unsubscribe();
+  }
+
   search(term: string) {
-    this.bandSearch.search(term).subscribe(bands => (this.suggestions = bands));
+    this.searchTerms.next(term);
   }
 
   addBand(band: Band) {
