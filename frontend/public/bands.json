@@ -1,0 +1,12 @@
+[
+  {"id":"the-beatles","name":"The Beatles","imageUrl":"/images/band.svg"},
+  {"id":"queen","name":"Queen","imageUrl":"/images/band.svg"},
+  {"id":"pink-floyd","name":"Pink Floyd","imageUrl":"/images/band.svg"},
+  {"id":"nirvana","name":"Nirvana","imageUrl":"/images/band.svg"},
+  {"id":"metallica","name":"Metallica","imageUrl":"/images/band.svg"},
+  {"id":"the-rolling-stones","name":"The Rolling Stones","imageUrl":"/images/band.svg"},
+  {"id":"ac-dc","name":"AC/DC","imageUrl":"/images/band.svg"},
+  {"id":"led-zeppelin","name":"Led Zeppelin","imageUrl":"/images/band.svg"},
+  {"id":"u2","name":"U2","imageUrl":"/images/band.svg"},
+  {"id":"radiohead","name":"Radiohead","imageUrl":"/images/band.svg"}
+]
