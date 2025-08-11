@@ -6,17 +6,31 @@
     (ngModelChange)="search($event)"
     placeholder="Search bands"
   />
-  <ul *ngIf="suggestions.length">
-    <li *ngFor="let band of suggestions" (click)="addBand(band)">
-      {{ band.name }}
-    </li>
-  </ul>
+    <ul *ngIf="suggestions.length">
+      <li *ngFor="let band of suggestions" (click)="addBand(band)">
+        <div class="band-name">{{ band.name }}</div>
+        <ul class="events" *ngIf="band.upcomingEvents?.length">
+          <li *ngFor="let event of band.upcomingEvents">{{ event }}</li>
+        </ul>
+        <div class="events" *ngIf="band.upcomingEvents && !band.upcomingEvents.length">
+          <em>Keine Auftritte in den nächsten 3 Wochen</em>
+        </div>
+      </li>
+    </ul>
 
-  <h3>Your Bands</h3>
-  <ul class="your-bands">
-    <li *ngFor="let band of bands">
-      {{ band.name }}
-      <button (click)="removeBand(band)">Remove</button>
-    </li>
-  </ul>
+    <h3>Your Bands</h3>
+    <ul class="your-bands">
+      <li *ngFor="let band of bands">
+        <div class="band-name">
+          {{ band.name }}
+          <button (click)="removeBand(band); $event.stopPropagation()">Remove</button>
+        </div>
+        <ul class="events" *ngIf="band.upcomingEvents?.length">
+          <li *ngFor="let event of band.upcomingEvents">{{ event }}</li>
+        </ul>
+        <div class="events" *ngIf="band.upcomingEvents && !band.upcomingEvents.length">
+          <em>Keine Auftritte in den nächsten 3 Wochen</em>
+        </div>
+      </li>
+    </ul>
 </div>

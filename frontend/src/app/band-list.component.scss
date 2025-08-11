@@ -38,3 +38,17 @@ li::before {
   margin-right: 0.5rem;
   color: #ff4081;
 }
+
+.events {
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  cursor: default;
+}
+
+.events li::before {
+  content: '🎤';
+}
+
+.events li {
+  cursor: default;
+}
