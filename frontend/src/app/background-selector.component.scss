@@ -1,5 +1,9 @@
 .background-selector {
   text-align: center;
+  margin-top: 1rem;
+  p {
+    margin-bottom: 0.5rem;
+  }
   .images {
     display: flex;
     flex-wrap: wrap;
@@ -11,9 +15,10 @@
       object-fit: cover;
       cursor: pointer;
       border: 2px solid transparent;
+      border-radius: 4px;
     }
     img:hover {
-      border-color: #666;
+      border-color: #ff4081;
     }
   }
 }

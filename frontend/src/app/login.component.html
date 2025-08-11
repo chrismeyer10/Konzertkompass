@@ -1,24 +1,28 @@
 <div class="login-container">
-  <app-background-selector></app-background-selector>
-  <div *ngIf="!auth.user()">
+  <h1 class="title">Konzertkompass</h1>
+  <p class="tagline">Finde deinen Rhythmus</p>
+
+  <div *ngIf="!auth.user()" class="auth-box">
     <div class="local-login">
-      <input type="text" [(ngModel)]="username" placeholder="Username" />
+      <input type="text" [(ngModel)]="username" placeholder="Benutzername" />
       <input
         type="password"
         [(ngModel)]="password"
-        placeholder="Password"
+        placeholder="Passwort"
       />
       <div class="buttons">
         <button (click)="loginUser()">Login</button>
-        <button (click)="registerUser()">Register</button>
+        <button (click)="registerUser()">Registrieren</button>
       </div>
       <p class="message" *ngIf="message">{{ message }}</p>
     </div>
-    <div class="divider">or</div>
+    <div class="divider">oder</div>
     <div id="googleBtn"></div>
   </div>
   <div *ngIf="auth.user()" class="profile">
     <p>Welcome {{ auth.user().username || 'friend' }}</p>
     <button (click)="signOut()">Sign out</button>
   </div>
+
+  <app-background-selector></app-background-selector>
 </div>
