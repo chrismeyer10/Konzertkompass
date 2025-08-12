@@ -1,7 +1,7 @@
 <nav class="navbar">
   <a routerLink="/login" routerLinkActive="active" *ngIf="!auth.user()">Login</a>
   <a routerLink="/bands" routerLinkActive="active">Bands</a>
-  <a routerLink="/bands2" routerLinkActive="active">Band2</a>
+  <a routerLink="/find-my-concert" routerLinkActive="active">Find_my_concert</a>
   <button *ngIf="auth.user()" (click)="logout()">Logout</button>
 </nav>
 <main>

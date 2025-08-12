@@ -1,4 +1,4 @@
-.band2-search {
+.find-my-concert-search {
   input {
     width: 100%;
     padding: 0.5rem;
@@ -9,6 +9,10 @@
     margin-top: 0.5rem;
     li {
       padding: 0.25rem 0;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
