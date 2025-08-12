@@ -1,2 +1,9 @@
 <h2>{{ band }}</h2>
-<div id="map" class="map"></div>
+<div class="container" [class.show-info]="selectedEvent">
+  <div id="map" class="map"></div>
+  <div class="info" *ngIf="selectedEvent">
+    <h3>{{ selectedEvent.venue.name }}</h3>
+    <p>{{ selectedEvent.datetime | date: 'longDate' }}</p>
+    <p>{{ selectedEvent.venue.country }}</p>
+  </div>
+</div>
