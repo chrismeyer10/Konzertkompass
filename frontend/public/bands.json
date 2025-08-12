@@ -1,4 +1,5 @@
 [
+  {"id":"testband","name":"Testband","imageUrl":"/images/band.svg"},
   {"id":"the-beatles","name":"The Beatles","imageUrl":"/images/band.svg"},
   {"id":"queen","name":"Queen","imageUrl":"/images/band.svg"},
   {"id":"pink-floyd","name":"Pink Floyd","imageUrl":"/images/band.svg"},
