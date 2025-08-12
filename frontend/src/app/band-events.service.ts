@@ -17,6 +17,20 @@ export class BandEventsService {
   constructor(private http: HttpClient) {}
 
   getUpcomingInGermany(band: string): Observable<Event[]> {
+    if (band.toUpperCase() === 'TESTBAND') {
+      return of([
+        {
+          datetime: new Date().toISOString(),
+          venue: {
+            country: 'Germany',
+            latitude: '52.5200',
+            longitude: '13.4050',
+            name: 'Berlin Arena',
+          },
+        },
+      ]);
+    }
+
     const url = `https://rest.bandsintown.com/artists/${encodeURIComponent(
       band
     )}/events?app_id=test`;

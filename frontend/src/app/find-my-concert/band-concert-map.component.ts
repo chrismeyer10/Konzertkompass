@@ -15,6 +15,15 @@ declare let L: any;
 export class BandConcertMapComponent implements OnInit, AfterViewInit {
   band = '';
   private map?: any;
+  selectedEvent?: {
+    datetime: string;
+    venue: {
+      country: string;
+      latitude: string;
+      longitude: string;
+      name: string;
+    };
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +33,7 @@ export class BandConcertMapComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       this.band = params.get('band') ?? '';
+      this.selectedEvent = undefined;
       if (this.map) {
         this.map.eachLayer((layer: any) => {
           if (layer instanceof L.Marker) {
@@ -56,6 +66,14 @@ export class BandConcertMapComponent implements OnInit, AfterViewInit {
           L.marker([lat, lng])
             .bindPopup(`${e.venue.name}`)
             .addTo(this.map);
+        }
+      }
+      if (events.length > 0) {
+        this.selectedEvent = events[0];
+        const lat = parseFloat(this.selectedEvent.venue.latitude);
+        const lng = parseFloat(this.selectedEvent.venue.longitude);
+        if (!isNaN(lat) && !isNaN(lng)) {
+          this.map.flyTo([lat, lng], 10, { animate: true, duration: 1.5 });
         }
       }
     });
