@@ -1,4 +1,4 @@
-<div class="band2-search">
+<div class="find-my-concert-search">
   <input
     type="text"
     [(ngModel)]="searchTerm"
@@ -6,6 +6,8 @@
     placeholder="Suche Bands weltweit..."
   />
   <ul *ngIf="suggestions.length">
-    <li *ngFor="let band of suggestions">{{ band.name }}</li>
+    <li *ngFor="let band of suggestions" (click)="goToBand(band)">
+      {{ band.name }}
+    </li>
   </ul>
 </div>

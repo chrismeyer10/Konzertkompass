@@ -12,9 +12,18 @@ export const routes: Routes = [
       import('./band-list.component').then((m) => m.BandListComponent),
   },
   {
-    path: 'bands2',
+    path: 'find-my-concert',
     loadComponent: () =>
-      import('./band2-list.component').then((m) => m.Band2ListComponent),
+      import('./find-my-concert/find-my-concert.component').then(
+        (m) => m.FindMyConcertComponent
+      ),
+  },
+  {
+    path: 'find-my-concert/:band',
+    loadComponent: () =>
+      import('./find-my-concert/band-concert-map.component').then(
+        (m) => m.BandConcertMapComponent
+      ),
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
