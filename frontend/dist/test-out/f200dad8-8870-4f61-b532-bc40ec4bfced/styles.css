@@ -1,0 +1,87 @@
+@charset "UTF-8";
+@import "https://fonts.googleapis.com/css2?family=Noto+Music&display=swap";
+
+/* src/styles.scss */
+body {
+  margin: 0;
+  font-family:
+    "Noto Music",
+    Arial,
+    sans-serif;
+  background-color: #0f0c29;
+  background-image:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(255, 0, 150, 0.25) 0%,
+      transparent 60%),
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(0, 200, 255, 0.25) 0%,
+      transparent 50%),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 2px,
+      transparent 2px,
+      transparent 4px),
+    linear-gradient(
+      135deg,
+      #0f0c29,
+      #302b63,
+      #24243e);
+  background-size:
+    100% 100%,
+    100% 100%,
+    20px 20px,
+    100% 100%;
+  color: #fff;
+  overflow-x: hidden;
+}
+body::after {
+  content: "\266a  \266b  \266c";
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+.navbar {
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+.navbar::before {
+  content: "\266b";
+  align-self: center;
+  margin-right: 0.5rem;
+}
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+}
+.navbar a.active {
+  text-decoration: underline;
+}
+button {
+  background-color: #ff4081;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 64, 129, 0.6);
+}
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+/* angular:styles/global:styles */
+/*# sourceMappingURL=styles.css.map */

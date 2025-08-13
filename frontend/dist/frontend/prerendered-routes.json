@@ -1,0 +1,8 @@
+{
+  "routes": {
+    "/Konzertkompass": {},
+    "/Konzertkompass/bands": {},
+    "/Konzertkompass/find-my-concert": {},
+    "/Konzertkompass/login": {}
+  }
+}
