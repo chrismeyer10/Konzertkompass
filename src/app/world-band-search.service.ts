@@ -7,6 +7,9 @@ import { Band } from './models/band';
 export class WorldBandSearchService {
   constructor(private http: HttpClient) {}
 
+  /**
+   * Sucht weltweit nach Bands über die MusicBrainz-API.
+   */
   search(term: string): Observable<Band[]> {
     if (!term.trim()) {
       return of([]);

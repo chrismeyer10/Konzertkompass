@@ -29,15 +29,13 @@ $gitUser = if ($remoteUrl -match '[:/]([^/]+)/'+[regex]::Escape($repoName)+'.git
 
 Write-Host "Repository: $repoName"
 
-# Frontend bauen
+# Anwendung bauen
 Write-Host 'Installiere Abhängigkeiten und erstelle Produktionsbuild...'
-Push-Location frontend
 npm ci
 npm run build -- --configuration production --base-href "/$repoName/"
-Pop-Location
 
 # Build in temporären Ordner kopieren
-$buildSource = "frontend/dist/frontend"
+$buildSource = "dist/konzertkompass"
 $tempDir = New-Item -ItemType Directory -Path (Join-Path $env:TEMP ([System.IO.Path]::GetRandomFileName()))
 Copy-Item -Path (Join-Path $buildSource '*') -Destination $tempDir -Recurse
 
@@ -54,9 +52,6 @@ Get-ChildItem -Force | Where-Object { $_.Name -ne '.git' } | Remove-Item -Recurs
 
 # Build aus Temp-Ordner kopieren
 Copy-Item -Path (Join-Path $tempDir '*') -Destination . -Recurse
-
-# Commit und Push
-
 
 # Cleanup Temp
 Remove-Item -Recurse -Force $tempDir

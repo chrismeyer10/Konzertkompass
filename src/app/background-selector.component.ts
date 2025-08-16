@@ -12,10 +12,16 @@ import { BackgroundService } from './background.service';
 export class BackgroundSelectorComponent {
   images: string[];
 
+  /**
+   * Lädt alle verfügbaren Hintergrundbilder über den Dienst.
+   */
   constructor(private bg: BackgroundService) {
     this.images = this.bg.getSuggestions();
   }
 
+  /**
+   * Setzt den ausgewählten Hintergrund.
+   */
   select(url: string) {
     this.bg.setBackground(url);
   }

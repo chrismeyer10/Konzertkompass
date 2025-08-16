@@ -7,26 +7,13 @@ import {
 import express from 'express';
 import { join } from 'node:path';
 
+// Pfad zum Browser-Build
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
-
-/**
- * Serve static files from /browser
- */
+// Statische Dateien aus dem Browser-Build bedienen
 app.use(
   express.static(browserDistFolder, {
     maxAge: '1y',
@@ -35,9 +22,7 @@ app.use(
   }),
 );
 
-/**
- * Handle all other requests by rendering the Angular application.
- */
+// Alle anderen Anfragen über Angular SSR beantworten
 app.use((req, res, next) => {
   angularApp
     .handle(req)
@@ -47,10 +32,7 @@ app.use((req, res, next) => {
     .catch(next);
 });
 
-/**
- * Start the server if this module is the main entry point.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
- */
+// Server starten, wenn dieses Modul direkt ausgeführt wird
 if (isMainModule(import.meta.url)) {
   const port = process.env['PORT'] || 4000;
   app.listen(port, (error) => {
@@ -62,7 +44,5 @@ if (isMainModule(import.meta.url)) {
   });
 }
 
-/**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
- */
+// Request-Handler für Angular CLI oder Cloud Functions
 export const reqHandler = createNodeRequestHandler(app);

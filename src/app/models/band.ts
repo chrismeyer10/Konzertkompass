@@ -1,3 +1,4 @@
+/** Repräsentiert eine Musikband. */
 export interface Band {
   id: string;
   name: string;

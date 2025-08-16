@@ -7,51 +7,32 @@
 
 ### Development server
 
-```bash
-./start-dev.sh
+```powershell
+\.\start-dev.ps1
 ```
 
-The script installs dependencies and launches the Angular dev server on <http://localhost:4200>.
+Das Skript installiert Abhängigkeiten und startet den Angular-Entwicklungsserver auf <http://localhost:4200>.
 
 ### Production build served locally
 
-```bash
-./run-prod.sh
-```
-
-This performs a clean install, builds the app with the production configuration
-and serves `dist/frontend` via [`serve`](https://www.npmjs.com/package/serve)
-on <http://localhost:8080>. Set a different port using
-`PORT=3000 ./run-prod.sh`.
-
-### Manual development steps (alternative)
-
-#### macOS/Linux
-```bash
-cd frontend
-export NG_APP_GOOGLE_CLIENT_ID=your-google-client-id
-npm start
-```
-
-#### Windows PowerShell
 ```powershell
-cd frontend
-$env:NG_APP_GOOGLE_CLIENT_ID="your-google-client-id"
-npm start
+\.\run-prod.ps1
 ```
+
+Dies führt `npm ci` aus, baut die Anwendung für die Produktion und dient `dist/konzertkompass` über [`serve`](https://www.npmjs.com/package/serve) auf <http://localhost:8080>. Einen anderen Port legen Sie mit `$env:PORT=3000; .\run-prod.ps1` fest.
 
 After logging in you can manage your band list.
 
 ## Deployment notes
 
-For production deployments you can copy the content of `frontend/dist/frontend`
+For production deployments you can copy the content of `dist/konzertkompass`
 to a web server such as Nginx:
 
 ```nginx
 server {
     listen 80;
     server_name example.com;
-    root /path/to/dist/frontend;
+    root /path/to/dist/konzertkompass;
     location / {
         try_files $uri $uri/ /index.html;
     }

@@ -22,6 +22,9 @@ export class BandListComponent implements OnInit, OnDestroy {
 
   constructor(private bandSearch: BandSearchService) {}
 
+  /**
+   * Initialisiert die Suche mit Debounce und Anzeige von Vorschlägen.
+   */
   ngOnInit() {
     this.searchSub = this.searchTerms
       .pipe(
@@ -32,20 +35,32 @@ export class BandListComponent implements OnInit, OnDestroy {
       .subscribe((bands) => (this.suggestions = bands));
   }
 
+  /**
+   * Abonnement aufräumen, wenn der Component zerstört wird.
+   */
   ngOnDestroy() {
     this.searchSub?.unsubscribe();
   }
 
+  /**
+   * Übergibt den Suchbegriff an den Service.
+   */
   search(term: string) {
     this.searchTerms.next(term);
   }
 
+  /**
+   * Fügt eine Band zur persönlichen Liste hinzu.
+   */
   addBand(band: Band) {
     this.bands.push(band);
     this.searchTerm = '';
     this.suggestions = [];
   }
 
+  /**
+   * Entfernt eine Band aus der Liste.
+   */
   removeBand(band: Band) {
     this.bands = this.bands.filter(b => b.id !== band.id);
   }

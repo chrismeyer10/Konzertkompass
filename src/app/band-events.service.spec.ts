@@ -5,6 +5,7 @@ import { BandEventsService } from './band-events.service';
 describe('BandEventsService', () => {
   let service: BandEventsService;
 
+  // Testumgebung vorbereiten
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -12,6 +13,7 @@ describe('BandEventsService', () => {
     service = TestBed.inject(BandEventsService);
   });
 
+  // Prüft, ob für TESTBAND ein Mock-Ereignis geliefert wird
   it('returns mock event for TESTBAND', (done) => {
     service.getUpcomingInGermany('TESTBAND').subscribe((events) => {
       expect(events.length).toBe(1);

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+/** Definition der Anwendungsrouten. */
 export const routes: Routes = [
   {
     path: 'login',
