@@ -20,7 +20,10 @@ export class LoginComponent implements AfterViewInit {
   message = '';
 
   constructor(public auth: AuthService, private router: Router) {}
-
+  
+  /**
+   * Initialisiert den Google-Login-Button nach dem Rendern.
+   */
   ngAfterViewInit() {
     if (typeof google !== 'undefined') {
       google.accounts.id.initialize({
@@ -39,6 +42,9 @@ export class LoginComponent implements AfterViewInit {
     }
   }
 
+  /**
+   * Meldet einen Benutzer mit Benutzername und Passwort an.
+   */
   loginUser() {
     if (this.auth.login(this.username, this.password)) {
       this.router.navigate(['/bands']);
@@ -47,6 +53,9 @@ export class LoginComponent implements AfterViewInit {
     }
   }
 
+  /**
+   * Registriert einen neuen Benutzer und leert die Eingabefelder.
+   */
   registerUser() {
     if (this.auth.register(this.username, this.password)) {
       this.message = 'Registration successful. Please log in.';
@@ -57,6 +66,7 @@ export class LoginComponent implements AfterViewInit {
     }
   }
 
+  /** Meldet den Benutzer ab. */
   signOut() {
     this.auth.clearUser();
   }

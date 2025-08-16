@@ -30,6 +30,9 @@ export class BandConcertMapComponent implements OnInit, AfterViewInit {
     private events: BandEventsService
   ) {}
 
+  /**
+   * Reagiert auf Routenänderungen und lädt entsprechende Events.
+   */
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       this.band = params.get('band') ?? '';
@@ -45,6 +48,9 @@ export class BandConcertMapComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Initialisiert die Karte nach dem View-Rendering.
+   */
   ngAfterViewInit() {
     this.loadLeaflet().then(() => {
       this.map = L.map('map').setView([51.1657, 10.4515], 5);
@@ -55,6 +61,9 @@ export class BandConcertMapComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Lädt Konzertdaten und setzt Marker auf der Karte.
+   */
   private loadEvents() {
     if (!this.band) return;
     this.events.getUpcomingInGermany(this.band).subscribe((events) => {
@@ -79,6 +88,9 @@ export class BandConcertMapComponent implements OnInit, AfterViewInit {
     });
   }
 
+  /**
+   * Lädt die Leaflet-Bibliothek dynamisch nach.
+   */
   private loadLeaflet(): Promise<void> {
     return new Promise((resolve) => {
       if (typeof L !== 'undefined') {

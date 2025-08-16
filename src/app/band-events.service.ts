@@ -16,6 +16,9 @@ interface Event {
 export class BandEventsService {
   constructor(private http: HttpClient) {}
 
+  /**
+   * Holt anstehende Konzerte einer Band in Deutschland.
+   */
   getUpcomingInGermany(band: string): Observable<Event[]> {
     if (band.toUpperCase() === 'TESTBAND') {
       return of([
@@ -46,6 +49,9 @@ export class BandEventsService {
     );
   }
 
+  /**
+   * Prüft, ob ein Datum innerhalb der nächsten drei Monate liegt.
+   */
   private isWithinNextThreeMonths(dateStr: string): boolean {
     const eventDate = new Date(dateStr);
     const now = new Date();

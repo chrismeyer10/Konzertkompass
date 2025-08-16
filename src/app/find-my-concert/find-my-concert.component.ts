@@ -31,6 +31,9 @@ export class FindMyConcertComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
 
+  /**
+   * Baut den Vorschlagsstrom auf und startet die Suche.
+   */
   ngOnInit() {
     this.searchSub = this.searchTerms
       .pipe(
@@ -41,14 +44,23 @@ export class FindMyConcertComponent implements OnInit, OnDestroy {
       .subscribe((bands) => (this.suggestions = bands));
   }
 
+  /**
+   * Räumt das Suchabonnement auf.
+   */
   ngOnDestroy() {
     this.searchSub?.unsubscribe();
   }
 
+  /**
+   * Übergibt den Suchbegriff an den Service.
+   */
   search(term: string) {
     this.searchTerms.next(term);
   }
 
+  /**
+   * Navigiert zur Detailansicht einer ausgewählten Band.
+   */
   goToBand(band: Band) {
     this.router.navigate(['/find-my-concert', band.name]);
   }

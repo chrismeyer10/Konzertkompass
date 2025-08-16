@@ -10,6 +10,9 @@ export class BandSearchService {
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * Lädt die Bandliste einmalig vom Server.
+   */
   private loadBands(): Observable<Band[]> {
     if (this.loaded) {
       return of(this.bands);
@@ -24,6 +27,9 @@ export class BandSearchService {
     );
   }
 
+  /**
+   * Sucht Bands, deren Namen mit dem Suchbegriff beginnen.
+   */
   search(term: string): Observable<Band[]> {
     if (!term.trim()) {
       return of([]);
